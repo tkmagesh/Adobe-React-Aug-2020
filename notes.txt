@@ -49,3 +49,58 @@ JavaScript
             one key value pair is called as an attribute
             attributes can be accessed using the dot (.) notation or square brackets ([]) notation
             classes are not needed to create objects
+            objects are dynamic
+            a method in an object is just an attribute whose value is a function
+            use the 'for..in' construct to iterate over all the attributes in an object
+
+        Function
+            Function can be treaded like objects
+                functions can be created using the 'expression / literal' syntax
+                functions can have attributes
+                functions can have methods
+                
+                Higher Order Functions
+                    functions can be passed as arguments to other functions
+                    functions can be returned as return value from other functions
+            
+            implicit values -> this, arguments (array like object with all the values passed to the function as arguments)
+            apply, bind & call are the built-in methods for functions
+
+        Invocation Context (this)
+            this
+                - NOT based on WHERE the function is OR who owns the function
+                - IS based on HOW the function is invoked
+
+
+        Function Invocation Patterns
+            If a function is invoked as a method of an object
+                this -> object
+
+            If a function is invoked as a function
+                this -> global (window)
+
+            Using the 'call' method of a function
+
+            Using the 'apply' method of a function
+
+            As a "Immediately Invoked Function Expression"
+
+            Using 'new' keyword
+
+
+Memoization
+pure functions
+    if the function execution can be replace with the result of the execution
+    In other words , the function should not have any side effects
+
+
+Constructor Functions
+    Functions used like a 'class'
+        invoked using the 'new' keyword
+            - this -> new object
+            - 'this' is returned by default
+
+        As a convention, the constructor functions are named with a proper case
+
+
+    

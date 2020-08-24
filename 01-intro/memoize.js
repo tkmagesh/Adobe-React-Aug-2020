@@ -7,8 +7,8 @@ function memoize(fn){
         return cache[key];
     }
 }
-undefined
-var add = memoize(function(x,y){
+
+var add =memoize(function(x,y){
     console.log('processing ', x , ' and ', y);
     return x + y;
 })
