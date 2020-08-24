@@ -32,8 +32,12 @@
             var div = document.body.children[4]
             var t = document.getElementById('txtUserName')
             var userName = t.value
-            var greetMessage = 'Hi ' + userName + ', Have a nice day!'
-            div.innerText = greetMessage
+            if (userName !== ''){
+                var greetMessage = 'Hi ' + userName + ', Have a nice day!'
+                div.innerText = greetMessage
+            } else {
+                div.innerText = 'username is mandatory!';
+            }
         }
         var btn = document.getElementById('btnGreet')
         btn.addEventListener('click', greetUser)

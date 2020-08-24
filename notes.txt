@@ -1,0 +1,51 @@
+Day-1
+Applications for the browser
+
+    Presentation
+        HTML, CSS
+
+    Data
+
+    User Interaction
+        JavaScript
+
+
+zen coding
+
+visual studio code
+chrome browser
+node.js (LTS version 12.x)
+
+window (BOM -> Browser Object Model)
+    navigator
+    history
+    frames
+    document (DOM - Document Object Model)
+
+
+function greetUser(){
+    var div = body.children[4]
+    var t = document.getElementById('txtUserName')
+    var userName = t.value
+    var greetMessage = 'Hi ' + userName + ', Have a nice day!'
+    div.innerText = greetMessage
+}
+
+JavaScript
+    Data Types
+        number, string, boolean, object, function, undefined
+
+    Programming Constructs
+        var, if else, switch case, for, while, try catch finally, throw, function, typeof
+
+    APIs
+        Date, Array,  Math, timer (setTimeout, clearTimeout, setInterval, clearInterval), Error, RegEx
+
+    Unique
+        Object
+            object is a dictionary (hash)
+            is a collection of key/value pairs
+            key can be a string or a number
+            one key value pair is called as an attribute
+            attributes can be accessed using the dot (.) notation or square brackets ([]) notation
+            classes are not needed to create objects
