@@ -103,4 +103,5 @@ Constructor Functions
         As a convention, the constructor functions are named with a proper case
 
 
-    
+Inheritance
+    Prototypal Inheritance
