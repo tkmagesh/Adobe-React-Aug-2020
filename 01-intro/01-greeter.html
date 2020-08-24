@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Greeter</title>
+    <style>
+        h1{
+            border-top : 1px solid gray;
+            border-bottom : 1px solid gray;
+            padding : 5px;
+            background-color : #e7e7e7;
+        }
+        label{
+            display : block;
+        }
+        #divMessage{
+            font-size: 18pt;
+            color : blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Greeter</h1>
+    <label for="">User Name :</label>
+    <input type="text" name="" id="txtUserName">
+    <input type="button" value="Greet" id="btnGreet">
+    <div id="divMessage">Message will be displayed here</div>
+    <script>
+        function greetUser() {
+            var div = document.body.children[4]
+            var t = document.getElementById('txtUserName')
+            var userName = t.value
+            var greetMessage = 'Hi ' + userName + ', Have a nice day!'
+            div.innerText = greetMessage
+        }
+        var btn = document.getElementById('btnGreet')
+        btn.addEventListener('click', greetUser)
+    </script>
+</body>
+</html>
