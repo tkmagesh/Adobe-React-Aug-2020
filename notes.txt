@@ -154,3 +154,10 @@ products
 
 4.
 var maxCost = products.reduce((result, product) => result > product.cost ? result : product.cost, 0)
+
+jQuery
+=======
+    JS library 
+    DOM manipulation
+
+    jQuery()
