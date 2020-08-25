@@ -134,9 +134,23 @@ var products = [
 
 Solve the following without using any looping constructs
 (Hint : use filter, reduce, forEach and map methods of the array)
- 
+
 1. find all stationary products
 2. create a new list of products with all existing the attributes and a new attribute called 'value' (where value = cost * units )
 3. print the 'name' and 'value' of each product in the console
 4. find the maximum cost from the products list
 
+Solution
+1. 
+var staionaryProducts = products.filter(p => p.category === 'stationary')
+
+2.
+var newProducts = products.map(p => ({...p, value : p.cost * p.units}))
+
+3.
+products
+    .map(p => ({...p, value : p.cost * p.units}))
+    .forEach(p => console.log(p.name, p.value))
+
+4.
+var maxCost = products.reduce((result, product) => result > product.cost ? result : product.cost, 0)
