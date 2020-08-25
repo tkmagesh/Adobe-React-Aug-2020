@@ -105,3 +105,29 @@ Constructor Functions
 
 Inheritance
     Prototypal Inheritance
+
+
+ES6 (ESNext / ES2015 / Ecmascript6 )
+1. let
+2. const
+3. Array destructuring
+4. Rest operator (array)
+5. Spread operator (Array)
+6. Object destructuring
+7. Rest operator (Object)
+8. Spread operator (Object)
+9. default arguments
+10. arrow functions
+11. template strings
+12. class
+
+http://es6-features.org
+
+
+var products = [
+    {id : 7, name : 'Pen', cost : 40, units : 30, category : 'stationary'},
+    {id : 2, name : 'Ten', cost : 70, units : 20, category : 'grocery'},
+    {id : 9, name : 'Den', cost : 20, units : 40, category : 'stationary'},
+    {id : 4, name : 'Len', cost : 60, units : 50, category : 'stationary'},
+    {id : 5, name : 'Zen', cost : 50, units : 30, category : 'grocery'}
+]
