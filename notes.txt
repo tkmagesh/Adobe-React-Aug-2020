@@ -131,3 +131,12 @@ var products = [
     {id : 4, name : 'Len', cost : 60, units : 50, category : 'stationary'},
     {id : 5, name : 'Zen', cost : 50, units : 30, category : 'grocery'}
 ]
+
+Solve the following without using any looping constructs
+(Hint : use filter, reduce, forEach and map methods of the array)
+ 
+1. find all stationary products
+2. create a new list of products with all existing the attributes and a new attribute called 'value' (where value = cost * units )
+3. print the 'name' and 'value' of each product in the console
+4. find the maximum cost from the products list
+
