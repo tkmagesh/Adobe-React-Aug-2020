@@ -25,14 +25,25 @@
                 */
 
                 $('<div>')
+                    .attr('id', 'div1')
                     .text('Culpa ipsum nostrud Lorem culpa. Duis ea culpa elit consectetur nostrud non esse irure duis culpa mollit do culpa. Fugiat in culpa laborum eu. Dolore voluptate pariatur incididunt fugiat. Sit laboris cillum incididunt ea incididunt ex aliquip. Deserunt occaecat mollit velit culpa labore. Cillum elit occaecat proident deserunt sint nostrud ipsum.')
                     .addClass('box')
-                    .appendTo(document.body);
+                    .hide()
+                    .appendTo(document.body)
+                    .fadeIn('slow');
+                    
+            });
+
+            $('#btnRemoveDiv').click(() => {
+                $('#div1').fadeOut((evt) => {
+                    $('#div1').remove();
+                });
             });
         });
     </script>
 </head>
 <body>
     <input type="button" value="Show Div" id="btnShowDiv">
+    <input type="button" value="Remove Div" id="btnRemoveDiv">
 </body>
 </html>
