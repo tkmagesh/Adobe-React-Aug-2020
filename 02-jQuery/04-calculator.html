@@ -26,19 +26,14 @@
                     return parseInt($(inputCtrl).val());
                 }
             }
+            
             $('#txtN1').keyup((evt) => {
                 n1 = validate(evt.target) || 0;
                 calculate();
             })
             $('#txtN2').keyup((evt) => {
-               if ($(evt.target).val() === '') {
-                   $(evt.target).addClass('error');
-                   n2 = 0;
-               } else {
-                   $(evt.target).removeClass('error');
-                   n2 = parseInt($(evt.target).val());
-                   calculate();
-               }
+                n2 = validate(evt.target) || 0;
+                calculate();
            })
            $('#selectOperator').change((evt) => {
                 oper = $(evt.target).val();
