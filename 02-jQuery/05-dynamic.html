@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+        .box{
+            border : 1px solid gray;
+            background-color: #e7e7e7;
+            border-radius: 5px;
+            padding : 10px;
+        }
+    </style>
+    <script src="jquery-3.5.1.js"></script>
+    <script>
+        $(() => {
+            $('#btnShowDiv').click(() => {
+                /* 
+                var $div = $('<div>');
+                $div.text('Anim veniam elit cillum non nulla enim. Cupidatat velit deserunt enim qui sunt aliqua irure labore culpa aliqua esse occaecat cillum. Quis laboris ad laboris fugiat cillum dolore voluptate ut consequat occaecat nulla. Laborum sunt magna aliquip ea exercitation deserunt proident. Magna deserunt non consequat consectetur est laboris velit tempor eiusmod ut sit quis aliqua. Nulla esse voluptate ut magna velit est aliqua deserunt ullamco nisi do ex minim enim.');
+                $div.addClass('box');
+                $div.appendTo(document.body); 
+                */
+
+                $('<div>')
+                    .text('Culpa ipsum nostrud Lorem culpa. Duis ea culpa elit consectetur nostrud non esse irure duis culpa mollit do culpa. Fugiat in culpa laborum eu. Dolore voluptate pariatur incididunt fugiat. Sit laboris cillum incididunt ea incididunt ex aliquip. Deserunt occaecat mollit velit culpa labore. Cillum elit occaecat proident deserunt sint nostrud ipsum.')
+                    .addClass('box')
+                    .appendTo(document.body);
+            });
+        });
+    </script>
+</head>
+<body>
+    <input type="button" value="Show Div" id="btnShowDiv">
+</body>
+</html>
