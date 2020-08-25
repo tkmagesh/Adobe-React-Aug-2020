@@ -13,14 +13,52 @@
         }
     </style>
     <script>
-       
+       $(() => {
+            $('input[type="number"').blur( evt => {
+                const currentTextbox = $(evt.target);
+                if (currentTextbox.val() === ''){
+                    currentTextbox.addClass('error');
+                } else {
+                    currentTextbox.removeClass('error');
+                }
+            });
+            $('input:button').click((evt) => {
+                const t1Val = $('#txtN1').val(),
+                    t2Val = $('#txtN2').val();
+                if (t1Val === '' || t2Val === '') {
+                    return;
+                }
+                const oper = evt.target.value,
+                    n1 = parseInt(t1Val),
+                    n2 = parseInt(t2Val);
+                let result = 0;
+                switch (oper) {
+                    case 'Add':
+                        result = n1 + n2;
+                        break;
+                    case 'Subtract':
+                        result = n1 - n2;
+                        break;
+                    case 'Multiply':
+                        result = n1 * n2;
+                        break;
+                    case 'Divide':
+                        result = n1 / n2;
+                        break;
+                
+                    default:
+                        break;
+                }
+                $('#divResult').text(result);
+            });
+       });
     </script>
 </head>
 <body>
     <h1>Calculator</h1>
     <hr>
-    <input type="number" class="error" name="" id="">
-    <input type="number" name="" id="">
+    <input type="number" name="" id="txtN1">
+    <input type="number" name="" id="txtN2">
     <br>
     <input type="button" value="Add">
     <input type="button" value="Subtract">
