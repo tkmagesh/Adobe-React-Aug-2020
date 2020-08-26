@@ -1,10 +1,12 @@
 const http = require('http'),
     fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    url = require('url');
 
 const server = http.createServer((req, res) => {
-    const resourceName = req.url;
-    const resourceFullPath = path.join(__dirname, resourceName);
+    const resourceUrl = req.url === '/' ? 'index.html' : req.url ;
+    const urlObj = url.parse(resourceUrl);
+    const resourceFullPath = path.join(__dirname, urlObj.pathname);
     if (!fs.existsSync(resourceFullPath)) {
         res.statusCode = 404;
         res.end();
