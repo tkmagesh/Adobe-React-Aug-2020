@@ -169,3 +169,19 @@ JS Runtime Environment
 
 Single Threaded Event Loop
 CommonJS modules
+
+package.json
+    manifest containing all the metadata information about the application
+
+npm
+    node package manager
+
+npm init
+npm start
+
+netstat -vanp tcp | grep 8080
+OR
+sudo lsof -i tcp:8080
+
+And
+kill <process id>
