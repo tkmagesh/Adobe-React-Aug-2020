@@ -1,13 +1,95 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <title>Express</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Bug Tracker</title>
+  <style>
+    ol {
+      width: 400px;
+      list-style: none;
+      -webkit-padding-start: 0px;
+    }
+
+    li {
+      border: 1px solid gray;
+      background-color: #e7e7e7;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    body {
+      margin-left: 50px;
+    }
+
+    .closed {
+      color: red;
+      text-decoration: line-through;
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    .bugname {
+      font-size: 18pt;
+      cursor: pointer;
+    }
+  </style>
+  <script src="javascripts/jquery-3.5.1.js"></script>
+  <script>
+    $(() => {
+      $('#bugList')
+        .on('click', 'div.bugname', evt => {
+          $(evt.target).toggleClass('closed');
+        })
+        .on('click', 'input[value="Remove"]', evt => {
+          $(evt.target)
+            .parent()
+            .fadeOut(() => {
+              $(evt.target).parent().remove();
+            });
+        });
+
+      $('#btnAddNew').click(() => {
+        var newBugName = $('#txtNewBugName').val();
+        var $bugName = $('<div>')
+          .text(newBugName)
+          .addClass('bugname');
+
+        var $removeBtn = $('<input/>')
+          .attr('type', 'button')
+          .val('Remove');
+
+        $('<li>')
+          .addClass('bugname')
+          .append($bugName)
+          .append($removeBtn)
+          .hide()
+          .appendTo($('#bugList'))
+          .fadeIn();
+      });
+    });
+  </script>
 </head>
 
 <body>
-  <h1>Express</h1>
-  <p>Welcome to Express - Updated</p>
+  <h1>Bug Tracker</h1>
+  <hr>
+  <label for="">Bug Name :</label>
+  <input type="text" name="" id="txtNewBugName">
+  <input type="button" value="Add New" id="btnAddNew">
+  <ol id="bugList">
+    <li>
+      <div class="bugname">[This is bug - 1]</div>
+      <input type="button" value="Remove">
+    </li>
+    <li>
+      <div class="bugname closed">[This is bug - 1]</div>
+      <input type="button" value="Remove">
+    </li>
+  </ol>
 </body>
 
 </html>
