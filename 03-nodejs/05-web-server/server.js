@@ -1,8 +1,16 @@
 const http = require('http'),
-    fs = require('fs');
+    fs = require('fs'),
+    path = require('path');
 
 const server = http.createServer((req, res) => {
-    const stream = fs.createReadStream('./index.html');
+    const resourceName = req.url;
+    const resourceFullPath = path.join(__dirname, resourceName);
+    if (!fs.existsSync(resourceFullPath)) {
+        res.statusCode = 404;
+        res.end();
+        return;
+    }
+    const stream = fs.createReadStream(resourceFullPath);
     stream.on('data', chunk => res.write(chunk));
     stream.on('end', () => res.end());
 });
