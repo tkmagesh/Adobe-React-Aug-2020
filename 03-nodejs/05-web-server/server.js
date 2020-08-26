@@ -20,6 +20,6 @@ const server = http.createServer((req, res) => {
 
 server.listen(8080);
 server.on('listening', () => {
-    console.log(chalk.cyan('server listening on port 8080'));
+    console.log(chalk.yellow('server listening on port 8080'));
 });
 console.log(chalk.red('server started'));
