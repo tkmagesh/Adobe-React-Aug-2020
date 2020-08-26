@@ -29,5 +29,28 @@ router.post('/', (req, res, next)=>{
     res.status(201).json(newBug);
 });
 
+router.put('/:id', (req, res, next)=>{
+    const updatedBug = req.body;
+    const updatedBugId = parseInt(req.params.id);
+    const existingBug = bugsList.find(bug => bug.id === updatedBugId);
+    if (existingBug) {
+        bugsList = bugsList.map(bug => bug.id === updatedBugId ? updatedBug : bug );
+        res.status(200).json(updatedBug);
+    } else {
+        res.status(404).end();
+    }
+})
+
+router.delete('/:id', (req, res, next) => {
+    const bugIdToDelete = parseInt(req.params.id);
+    const existingBug = bugsList.find(bug => bug.id === bugIdToDelete);
+    if (existingBug) {
+        bugsList = bugsList.filter(bug => bug.id !== bugIdToDelete);
+        res.status(200).json({});
+    } else {
+        res.status(404).end();
+    }
+})
+
 
 module.exports = router;
