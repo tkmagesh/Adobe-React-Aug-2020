@@ -21,5 +21,13 @@ router.get('/:id', (req, res, next) => {
     }
 });
 
+router.post('/', (req, res, next)=>{
+    const bugData = req.body,
+        newBugId = bugsList.reduce((result, bug) => result > bug.id ? result : bug.id, 0) + 1,
+        newBug = { ...bugData, id : newBugId };
+    bugsList.push(newBug);
+    res.status(201).json(newBug);
+});
+
 
 module.exports = router;

@@ -185,3 +185,30 @@ sudo lsof -i tcp:8080
 
 And
 kill <process id>
+
+yarn
+to install yarn
+npm install yarn -g
+
+
+Route
+    url
+
+RESTFul services
+    Web Standards for data
+
+Resource
+    url
+        GET     http://myapp.com/users
+        GET     http://myapp.com/users/<user-id>
+        POST    http://myapp.com/users/
+        PUT     http://myapp.com/users/<user-id>
+        DELETE  http://myapp.com/users/<user-id>
+
+        200 OK
+        201 Object Created
+        304 Object Moved
+        403 Unauthorized
+        404 Not Found
+        500 Internal Server Error
+
