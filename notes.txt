@@ -161,3 +161,11 @@ jQuery
     DOM manipulation
 
     jQuery()
+
+
+Node.js
+JS Runtime Environment
+    - execute any javascript programs
+
+Single Threaded Event Loop
+CommonJS modules

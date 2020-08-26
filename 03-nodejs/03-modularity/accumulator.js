@@ -1,4 +1,4 @@
-console.log('accumulator.js executed');
+
 function accumulatorFactory(initialResult = 0){
     let result = initialResult;
     const accumulator = {
