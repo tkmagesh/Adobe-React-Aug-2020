@@ -15,7 +15,7 @@
     <script src="react-dom.development.js"></script>
     <script src="babel.min.js"></script>
     <script type="text/babel">
-        class Greeter extends React.Component{
+        /* class Greeter extends React.Component{
             state = { 
                 message : 'Dummy greet message',
                 userName : ''
@@ -43,7 +43,37 @@
                     </div>
                 )
             }
+        } */
+
+        class Greeter extends React.Component{
+            state = { 
+                message : 'Dummy greet message'
+            };
+            txtUserNameRef = React.createRef();
+
+            onBtnGreetClick = () => {
+                const userName = this.txtUserNameRef.current.value;
+                const newMessage = `Hi ${userName}, Have a nice day!`;
+                this.setState({
+                    message : newMessage
+                });
+            }
+            
+            render(){
+                return(
+                    <div>
+                        <h1>Greeter</h1>
+                        <hr/>
+                        <label htmlFor="">User Name :</label>
+                        <input type="text" ref={this.txtUserNameRef} />
+                        <input type="button" value="Greet" onClick={this.onBtnGreetClick}/>
+                        <div className="highlight">{this.state.message}</div>
+                    </div>
+                )
+            }
         }
+
+
         ReactDOM.render( <Greeter/> , document.getElementById('root'));
     </script>
 </head>
