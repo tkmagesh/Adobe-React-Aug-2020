@@ -76,7 +76,9 @@
             }
             render(){
                 const { productNames } = this.state;
-                const productItems = productNames.map((productName, index) => (<li key={index}>{productName}</li>));
+                const productItems = productNames.map((productName, index) => (
+                    <ProductItem productName={productName} key={index}/>)
+                );
                 return(
                     <div>
                         <h1>Products</h1>
@@ -90,6 +92,30 @@
                         <ol>
                             {productItems}
                         </ol>
+                    </div>
+                )
+            }
+        }
+
+        class ProductItem extends React.Component{
+            state = { x : 10 };
+            shouldComponentUpdate(nextProps, nextState){
+                if (this.props.productName === nextProps.productName && this.state.x === nextState.x ){
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            componentDidUpdate(){
+                console.log('component is updated');
+            }
+            render(){
+                console.log(`${this.props.productName} - rendered`);
+                const { productName } = this.props;
+                return (
+                    <div>
+                        <input type="button" value="Change State" onClick={ _ => this.setState({ x : this.state.x + 1})} />
+                        <li>{productName}</li>
                     </div>
                 )
             }
