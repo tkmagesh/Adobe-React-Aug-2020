@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Products</title>
+    <style>
+        body{
+            margin-left: 50px;
+        }
+    </style>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        class Products  extends React.Component{
+            render(){
+                const productNames = [ 'Pen', 'Pencil', 'Marker' ];
+                /* const productItems = [];
+                for (let index = 0; index < productNames.length; index++) {
+                    const productName = productNames[index];
+                    const productItem = (<li key={index}>{productName}</li>);
+                    productItems.push(productItem);
+                } */
+                const productItems = productNames.map((productName, index) => (<li key={index}>{productName}</li>));
+                return(
+                    <div>
+                        <h1>Products</h1>
+                        <hr/>
+                        <ol>
+                            {productItems}
+                        </ol>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(
+            <Products/>, document.getElementById('root')
+        );
+    </script>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+</html>
