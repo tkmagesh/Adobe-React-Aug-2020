@@ -44,22 +44,18 @@
                 const { basic, hra, da, tax, salary } = this.state;
                 return(
                     <section>
-                        <div className="field">
-                            <label htmlFor="">Basic :</label>
-                            <input 
-                                type="number" 
-                                onChange={ evt => this.setState({basic : evt.target.valueAsNumber}) }/>
-                        </div>
-                        <div className="field">
-                            <label htmlFor="">HRA :</label>
-                            <input type="number"
-                                onChange={ evt => this.setState({hra : evt.target.valueAsNumber}) } />
-                        </div>
-                        <div className="field">
-                            <label htmlFor="">DA :</label>
-                            <input type="number" 
-                                onChange={ evt => this.setState({da : evt.target.valueAsNumber}) } />
-                        </div>
+                        <SalaryCalculatorInput 
+                            labelText="Basic"
+                            onValueChange={ value => this.setState({basic : value })}
+                        />
+                        <SalaryCalculatorInput 
+                            labelText="HRA"
+                            onValueChange={ value => this.setState({hra : value })}
+                        />
+                        <SalaryCalculatorInput 
+                            labelText="DA"
+                            onValueChange={ value => this.setState({da : value })}
+                        />
                         <div className="field">
                             <label htmlFor="">Tax :</label>
                             <input type="range" 
@@ -83,6 +79,20 @@
                             </table>
                         </div>
                     </section>
+                )
+            }
+        }
+
+        class SalaryCalculatorInput extends React.Component{
+            render(){
+                const { labelText, onValueChange } = this.props;
+                return(
+                    <div className="field">
+                        <label htmlFor="">{labelText}</label>
+                        <input 
+                            type="number" 
+                            onChange={ evt => onValueChange(evt.target.valueAsNumber) }/>
+                    </div>
                 )
             }
         }
