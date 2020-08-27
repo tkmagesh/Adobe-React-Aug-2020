@@ -222,3 +222,11 @@ Resource
 
     Efficient Rendering of the UI
     
+    HTML
+        Open tags alone are supported
+        "class" attribute is allowed
+        "for" attribute is allowed
+    JSX
+        Every open tag must have a corresponding close tag
+        Use "className" in place of "class"
+        Use "htmlFor" in place of "for"

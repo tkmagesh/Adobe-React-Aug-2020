@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VDOM Demo</title>
+    <style>
+        .highlight{
+            color : blue;
+            font-size: 18pt;
+        }
+    </style>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        class Greeter extends React.Component{
+            state = { 
+                message : 'Dummy greet message',
+                userName : ''
+            };
+            onBtnGreetClick = () => {
+                const newMessage = `Hi ${this.state.userName}, Have a nice day!`;
+                this.setState({
+                    message : newMessage
+                });
+            }
+            onTxtUserNameChange = (evt) => {
+                this.setState({
+                    userName : evt.target.value
+                });
+            }
+            render(){
+                return(
+                    <div>
+                        <h1>Greeter</h1>
+                        <hr/>
+                        <label htmlFor="">User Name :</label>
+                        <input type="text" onChange={this.onTxtUserNameChange}/>
+                        <input type="button" value="Greet" onClick={this.onBtnGreetClick}/>
+                        <div className="highlight">{this.state.message}</div>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render( <Greeter/> , document.getElementById('root'));
+    </script>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+</html>
