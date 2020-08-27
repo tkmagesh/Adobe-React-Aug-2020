@@ -230,3 +230,21 @@ Resource
         Every open tag must have a corresponding close tag
         Use "className" in place of "class"
         Use "htmlFor" in place of "for"
+
+Lifecycle Events
+    Mounted
+        componentWillMount
+        componentDidMount
+    Updated
+        shouldComponentUpdate
+        componentDidUpdate
+    Unmounted
+        componentWillUnmount
+
+
+create-react-app
+
+to create an application
+    npx create-react-app <application-name>
+
+

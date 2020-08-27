@@ -1,0 +1,19 @@
+body{
+    margin-left: 50px;
+}
+.field{
+    margin-bottom: 10px;
+}
+label{
+    display : block;
+}
+td{
+    font-size: 18pt;
+    padding-right: 10px;
+}
+.poorSalary{
+    color : red;
+}
+.goodSalary{
+    color : green;
+}
