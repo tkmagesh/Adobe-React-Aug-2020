@@ -34,6 +34,7 @@
     </style>
     <script src="jquery-3.5.1.js"></script>
     <script>
+        const bugList = [];
         $(() => {
             $('#bugList')
                 .on('click', 'div.bugname',  evt => {
@@ -49,6 +50,8 @@
 
             $('#btnAddNew').click(() => {
                 var newBugName = $('#txtNewBugName').val();
+                const newBug = { name : newBugName, isClosed : false };
+                bugList.push(newBug);
                 var $bugName = $('<div>')
                     .text(newBugName)
                     .addClass('bugname');
@@ -65,6 +68,11 @@
                     .appendTo($('#bugList'))
                     .fadeIn();
             });
+
+            $('#btnSave').click(() => {
+                console.log('All the bug detail will be displayed here');
+                console.table(bugList);
+            });
         });
     </script>
 </head>
@@ -75,14 +83,8 @@
     <input type="text" name="" id="txtNewBugName">
     <input type="button" value="Add New" id="btnAddNew">
     <ol id="bugList">
-        <li>
-            <div class="bugname">[This is bug - 1]</div>
-            <input type="button" value="Remove">
-        </li>
-        <li>
-            <div class="bugname closed">[This is bug - 1]</div>
-            <input type="button" value="Remove">
-        </li>
+       
     </ol>
+    <input type="button" value="Save All Bugs" id="btnSave">
 </body>
 </html>

@@ -212,3 +212,13 @@ Resource
         404 Not Found
         500 Internal Server Error
 
+
+    Presentation + UI Behavior + Data (State)
+
+    Application = composition of components
+    Component = One UI entity
+              = encapsulation of Presentation + UI Behavior + State
+              = synchronization of state and UI is automatically taken care
+
+    Efficient Rendering of the UI
+    
