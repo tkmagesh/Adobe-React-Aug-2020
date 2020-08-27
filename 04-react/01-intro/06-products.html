@@ -42,9 +42,30 @@
             }
         } */
 
+         class Timer extends React.Component{
+             state = { currentTime : new Date().toTimeString() };
+             timerId = null;
+
+             componentDidMount(){
+                console.log('component mounted');
+                this.timerId = setInterval(() => {
+                    this.setState({ currentTime : new Date().toTimeString() });
+                }, 1000);
+             }
+             componentWillUnmount(){
+                 console.log('component is unmounted');
+                 if (this.timerId)
+                    clearInterval(this.timerId);
+             }
+             render(){
+                 return(<div>{this.state.currentTime}</div>)
+             }
+         }
+
          class Products  extends React.Component{
             state = {
                 productNames : [],
+                showTimer : false
             };
             txtProductNameRef = React.createRef();
 
@@ -59,6 +80,9 @@
                 return(
                     <div>
                         <h1>Products</h1>
+                        <input type="checkbox" onChange={evt => this.setState({ showTimer : evt.target.checked})} />
+                        <label>Show Timer </label>
+                        { this.state.showTimer ? (<Timer/>) : null }
                         <hr/>
                         <label>Name :</label>
                         <input type="text" ref={this.txtProductNameRef} />
