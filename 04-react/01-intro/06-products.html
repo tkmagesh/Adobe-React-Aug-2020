@@ -14,23 +14,55 @@
     <script src="react-dom.development.js"></script>
     <script src="babel.min.js"></script>
     <script type="text/babel">
-        class Products  extends React.Component{
+       /*  class Products  extends React.Component{
+            state = {
+                productNames : [],
+                newProductName : ''
+            };
+            onAddNewClick = () => {
+                const {productNames, newProductName} = this.state;
+                const newProducts = [...productNames, newProductName];
+                this.setState({ productNames: newProducts});
+            }
             render(){
-                const productNames = [];
-                /* const productItems = [];
-                for (let index = 0; index < productNames.length; index++) {
-                    const productName = productNames[index];
-                    const productItem = (<li key={index}>{productName}</li>);
-                    productItems.push(productItem);
-                } */
+                const { productNames } = this.state;
                 const productItems = productNames.map((productName, index) => (<li key={index}>{productName}</li>));
                 return(
                     <div>
                         <h1>Products</h1>
                         <hr/>
                         <label>Name :</label>
-                        <input type="text" />
-                        <input type="button" value="Add New" />
+                        <input type="text" onChange={ evt => this.setState({newProductName : evt.target.value })} />
+                        <input type="button" value="Add New" onClick={this.onAddNewClick}/>
+                        <ol>
+                            {productItems}
+                        </ol>
+                    </div>
+                )
+            }
+        } */
+
+         class Products  extends React.Component{
+            state = {
+                productNames : [],
+            };
+            txtProductNameRef = React.createRef();
+
+            onAddNewClick = () => {
+                const {productNames} = this.state;
+                const newProducts = [...productNames, this.txtProductNameRef.current.value];
+                this.setState({ productNames: newProducts});
+            }
+            render(){
+                const { productNames } = this.state;
+                const productItems = productNames.map((productName, index) => (<li key={index}>{productName}</li>));
+                return(
+                    <div>
+                        <h1>Products</h1>
+                        <hr/>
+                        <label>Name :</label>
+                        <input type="text" ref={this.txtProductNameRef} />
+                        <input type="button" value="Add New" onClick={this.onAddNewClick}/>
                         <ol>
                             {productItems}
                         </ol>
