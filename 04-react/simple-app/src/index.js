@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 //import App from './App';
-import SalaryCalculator from './salaryCalculator';
+//import SalaryCalculator from './salaryCalculator';
+import Greeter from './greeter';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -17,7 +18,7 @@ console.log(calc);
 
 ReactDOM.render(
   <React.StrictMode>
-    <SalaryCalculator />
+    <Greeter/>
   </React.StrictMode>,
   document.getElementById('root')
 );

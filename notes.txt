@@ -248,3 +248,12 @@ to create an application
     npx create-react-app <application-name>
 
 
+React Hooks
+    functions to handle side effects in function components
+    hooks functions must start with 'use'
+    Built in hooks
+        useState
+        useEffect
+        useReducer
+        useMemo
+        
