@@ -1,35 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from "redux";
+import { Provider, useSelector, useDispatch } from "react-redux";
 
 import './index.css';
-//import App from './App';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Spinner from './Spinner';
 
-/* action = { type : '<Action Name>' : payload : supporting data } */
-
-function spinnerReducer(currentState = 100 /* initial state */, action){
+function spinnerReducer(currentState = 50, action){
   if (action.type === 'UP') return currentState + 1;
   if (action.type === 'DOWN') return currentState - 1;
   return currentState;
 }
 
+const Spinner = () => {
+  const value = useSelector(storeState => storeState);
+  const dispatch = useDispatch();
+  const onDownClick = () => dispatch({ type: 'DOWN'});
+  const onUpClick = () => dispatch({ type: 'UP'});
+  return(
+    <div>
+      <h3>Spinner</h3>
+      <hr />
+      <input type="button" value="DOWN" onClick={onDownClick} />
+      <span>[ {value} ]</span>
+      <input type="button" value="UP" onClick={onUpClick} />
+    </div>
+  )
+}
+
 const appStore = createStore(spinnerReducer);
 
-//ONLY for testing, SHOULD NOT BE DONE IN REAL APPLICATIONS
-window['store']=appStore;
 
-function renderApp(){
-    ReactDOM.render(
-      <React.StrictMode>
-        <Spinner store={appStore}/>
-      </React.StrictMode>,
-      document.getElementById('root')
-    );
-}
-renderApp();
-appStore.subscribe(renderApp);
+
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={appStore}>
+      <Spinner />
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

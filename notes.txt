@@ -263,3 +263,7 @@ Store
     - subscribe(fn)
     - dispatch(action)
 
+https://bit.ly/2G6xNq4
+
+
+
