@@ -267,3 +267,36 @@ https://bit.ly/2G6xNq4
 
 
 
+React
+    Components (User Interaction)
+        Needs the following
+            a way to access the state from the store
+            access to 'dispatch' so that actions can be dispatched
+
+Redux
+    State Management
+
+React-Redux
+    Provider
+        All the components that requires redux infrastructure should be child components of the Provider
+
+    useSelector
+        can be used to gain access to the store state, so that the dat can be displayed to the user
+    
+    useDispatch
+        can be used to gain access to the dispatch method so that the actions can be dispatched based on user interaction
+
+
+Calculator using Redux
+<div>
+    <h3>Calculator</h3>
+    <hr>
+    <input type="number" name="" id="">
+    <input type="number" name="" id="">
+    <br>
+    <input type="button" value="Add">
+    <input type="button" value="Subtract">
+    <input type="button" value="Multiply">
+    <input type="button" value="Divide">
+    <div>[Result]</div>
+</div>
