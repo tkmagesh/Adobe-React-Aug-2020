@@ -1,0 +1,32 @@
+{
+  "bugs": [
+    {
+      "id": 1,
+      "name": "Server communication failure",
+      "isClosed": false,
+      "createdAt": "2020-07-15T09:41:11.316Z"
+    },
+    {
+      "id": 2,
+      "name": "User actions not recognised",
+      "isClosed": true,
+      "createdAt": "2020-07-15T09:41:34.958Z"
+    },
+    {
+      "id": 3,
+      "name": "Data integrity checks failed",
+      "isClosed": false,
+      "createdAt": "2020-08-28T12:25:02.690Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "Payroll Master"
+    },
+    {
+      "id": 2,
+      "name": "Expense Manager"
+    }
+  ]
+}

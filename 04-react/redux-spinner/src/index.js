@@ -56,7 +56,6 @@ function spinnerReducer(currentState = 50, action) {
 }
 
 function calculatorReducer(currentState = 0, action){
-  console.log(action);
   const { n1 = 0, n2 = 0 } = action.payload || {} ;
   
   switch (action.type) {
