@@ -4,7 +4,7 @@ import './index.css';
 //import App from './App';
 //import SalaryCalculator from './salaryCalculator';
 import Greeter from './greeter';
-
+import TimerContainer from './timer';
 import * as serviceWorker from './serviceWorker';
 
 // import * as calculator from './calculator'
@@ -18,6 +18,7 @@ console.log(calc);
 
 ReactDOM.render(
   <React.StrictMode>
+    <TimerContainer/>
     <Greeter/>
   </React.StrictMode>,
   document.getElementById('root')
