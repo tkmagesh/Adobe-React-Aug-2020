@@ -73,6 +73,7 @@
                 const {productNames} = this.state;
                 const newProducts = [...productNames, this.txtProductNameRef.current.value];
                 this.setState({ productNames: newProducts});
+                this.props.onListChange(newProducts);
             }
             render(){
                 const { productNames } = this.state;
@@ -127,11 +128,20 @@
                 )
             }
         }
-        ReactDOM.render(
-            <div>
-                <ProductsCount />
-                <Products/>
-            </div>
+       
+
+        const App = () => {
+            const [ products, setProducts ] = React.useState([]);
+            return (
+                <div>
+                    <ProductsCount data={products}/>
+                    <Products onListChange={ data => setProducts(data)}/>
+                </div>
+            )
+        }
+
+         ReactDOM.render(
+            <App/>
             , document.getElementById('root')
         );
     </script>

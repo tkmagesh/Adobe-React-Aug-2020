@@ -257,3 +257,9 @@ React Hooks
         useReducer
         useMemo
         
+
+Store
+    - getState()
+    - subscribe(fn)
+    - dispatch(action)
+
