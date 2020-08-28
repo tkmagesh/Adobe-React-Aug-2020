@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from "redux";
 import { Provider, useSelector, useDispatch } from "react-redux";
@@ -8,20 +8,24 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 function spinnerReducer(currentState = 50, action){
-  if (action.type === 'UP') return currentState + 1;
-  if (action.type === 'DOWN') return currentState - 1;
+  if (action.type === 'UP') return currentState + action.payload;
+  if (action.type === 'DOWN') return currentState - action.payload;
   return currentState;
 }
 
 const Spinner = () => {
   const value = useSelector(storeState => storeState);
   const dispatch = useDispatch();
-  const onDownClick = () => dispatch({ type: 'DOWN'});
-  const onUpClick = () => dispatch({ type: 'UP'});
+  const [delta, setDelta] = useState(0);
+  const onDownClick = () => dispatch({ type: 'DOWN', payload : delta});
+  const onUpClick = () => dispatch({ type: 'UP', payload: delta});
   return(
     <div>
       <h3>Spinner</h3>
       <hr />
+      <label>Delta :</label>
+      <input type="number" value={delta} onChange={ evt => setDelta(evt.target.valueAsNumber)} />
+      <br/>
       <input type="button" value="DOWN" onClick={onDownClick} />
       <span>[ {value} ]</span>
       <input type="button" value="UP" onClick={onUpClick} />
