@@ -10,8 +10,10 @@ import * as serviceWorker from './serviceWorker';
 // import { add } from './calculator';
 
 //importing the default export
+/* 
 import calc from './calculator';
-console.log(calc);
+console.log(calc); 
+*/
 
 ReactDOM.render(
   <React.StrictMode>

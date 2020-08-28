@@ -7,7 +7,6 @@ class SalaryCalculatorInput extends Component {
             <div className="field">
                 <label htmlFor="">{labelText}</label>
                 <input
-                    type="number"
                     type={type}
                     onChange={evt => onValueChange(evt.target.valueAsNumber)}
                     {...restProps}

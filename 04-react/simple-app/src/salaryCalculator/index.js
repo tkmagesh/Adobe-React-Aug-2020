@@ -20,7 +20,6 @@ class SalaryCalculator extends Component {
     }
 
     render() {
-        const { basic, hra, da, tax, salary } = this.state;
         return (
             <section>
                 <SalaryCalculatorInput
