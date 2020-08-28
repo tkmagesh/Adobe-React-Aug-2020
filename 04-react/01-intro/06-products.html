@@ -82,9 +82,11 @@
                 return(
                     <div>
                         <h1>Products</h1>
-                        <input type="checkbox" onChange={evt => this.setState({ showTimer : evt.target.checked})} />
-                        <label>Show Timer </label>
-                        { this.state.showTimer ? (<Timer/>) : null }
+                        {/*  
+                            <input type="checkbox" onChange={evt => this.setState({ showTimer : evt.target.checked})} />
+                            <label>Show Timer </label>
+                            { this.state.showTimer ? (<Timer/>) : null } 
+                        */}
                         <hr/>
                         <label>Name :</label>
                         <input type="text" ref={this.txtProductNameRef} />
@@ -96,6 +98,12 @@
                 )
             }
         }
+
+        const ProductsCount = ( {data = []} ) => (
+            <div>
+                <span>Products Count : {data.length} </span>
+            </div>
+        );
 
         class ProductItem extends React.Component{
             state = { x : 10 };
@@ -114,14 +122,17 @@
                 const { productName } = this.props;
                 return (
                     <div>
-                        <input type="button" value="Change State" onClick={ _ => this.setState({ x : this.state.x + 1})} />
                         <li>{productName}</li>
                     </div>
                 )
             }
         }
         ReactDOM.render(
-            <Products/>, document.getElementById('root')
+            <div>
+                <ProductsCount />
+                <Products/>
+            </div>
+            , document.getElementById('root')
         );
     </script>
 </head>

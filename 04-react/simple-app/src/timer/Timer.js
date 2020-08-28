@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const Timer = () => {
-    const [currentTime, setCurrentTime] = useState(new Date().toTimeString())
+    const [currentTime, setCurrentTime] = useState(new Date().toTimeString());
     useEffect(() => {
         //this function will be executed whenever the component is mounted/updated
         console.log('component is mounted')
