@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import bugActions from '../actions';
+import { Link } from 'react-router-dom';
 
 const BugItem = ({bug}) => {
     const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const BugItem = ({bug}) => {
                 {bug.createdAt}
             </div>
             <input type="button" value="Remove" onClick={() => onRemoveClick(bug)} />
+            <div> <Link to={'/bugs/' + bug.id}>More...</Link> </div>
         </li>
     )
 }

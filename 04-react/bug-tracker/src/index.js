@@ -5,6 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import { Provider} from 'react-redux';
 import BugTracker from './bugTracker'; 
 import Projects from './projects';
+import BugDetails from './bugTracker/BugDetails';
 
 import appStore from './store';
 import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom';
@@ -17,6 +18,8 @@ const Home = () => (
     <p>Labore culpa aliqua mollit non mollit pariatur. Occaecat sint tempor amet minim excepteur occaecat ea officia aliquip eu aliqua qui consectetur ex. Laboris enim est voluptate sunt qui qui ipsum nostrud.</p>
   </div>
 )
+
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -33,7 +36,10 @@ ReactDOM.render(
           <Route path="/projects">
             <Projects/>
           </Route>
-          <Route path="/bugs">
+          <Route path="/bugs/:id">
+            <BugDetails />
+          </Route>
+          <Route path="/bugs" match="exact">
             <BugTracker/>
           </Route>
           <Route path="/">
