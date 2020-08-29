@@ -4,6 +4,8 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { Provider} from 'react-redux';
 import BugTracker from './bugTracker'; 
+import Projects from './projects';
+
 import appStore from './store';
 
 
@@ -12,6 +14,7 @@ ReactDOM.render(
     <Provider store={appStore}>
       <h1>Bug Tracker</h1>
       <hr/>
+      <Projects/>
       <BugTracker></BugTracker>
     </Provider>
   </React.StrictMode>,
