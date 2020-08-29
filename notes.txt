@@ -287,16 +287,5 @@ React-Redux
         can be used to gain access to the dispatch method so that the actions can be dispatched based on user interaction
 
 
-Calculator using Redux
-<div>
-    <h3>Calculator</h3>
-    <hr>
-    <input type="number" name="" id="">
-    <input type="number" name="" id="">
-    <br>
-    <input type="button" value="Add">
-    <input type="button" value="Subtract">
-    <input type="button" value="Multiply">
-    <input type="button" value="Divide">
-    <div>[Result]</div>
-</div>
+yarn add redux-logger  redux-thunk
+

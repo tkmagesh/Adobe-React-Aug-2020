@@ -8,11 +8,18 @@ import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import axios from 'axios';
 
-
+//NEVER Return the UPDATED currentState from the reducer
+//Always return a new state
 function bugsReducer(currentState = [], action){
   switch (action.type) {
     case 'INIT_BUGS':
       return action.payload;
+    case 'ADD_NEW_BUG' : 
+      return [ ...currentState, action.payload];
+    case 'UPDATE_BUG' :
+      return currentState.map(bug => bug.id === action.payload.id ? action.payload : bug );
+    case 'REMOVE_BUG' :
+      return currentState.filter(bug => bug.id !== action.payload.id);
     default:
       return currentState;
   }
@@ -64,31 +71,46 @@ const rootReducer = combineReducers({
 
 const appStore = createStore(rootReducer, applyMiddleware(logger, thunk));
 
-function getLocalBugs() {
-  const bugs = [
-    { id: 1, name: 'Bug - 1', isClosed: false },
-    { id: 2, name: 'Bug - 2', isClosed: true },
-    { id: 3, name: 'Bug - 3', isClosed: false },
-  ];
-  return bugs;
-}
 
+const serviceEndPoint = 'http://localhost:3030/bugs';
 
-function getRemoteBugs() {
-  return axios.get('http://localhost:3030/bugs')
-    .then(response => response.data);
-} 
+const bugApi = { 
+  getAll(){
+    return axios.get(serviceEndPoint)
+      .then(response => response.data);
+  },
+  save(bugData){
+    if (bugData.id === 0){
+      return axios.post(serviceEndPoint, bugData)
+        .then(response => response.data);
+    } else {
+      return axios.put(`${serviceEndPoint}/${bugData.id}`, bugData)
+        .then(response => response.data);
+    }
+  },
+  remove(bugData){
+    return axios.delete(`${serviceEndPoint}/${bugData.id}`)
+      .then(response => response.data);
+  }
+};
 
 
 var bugActions = {
   load(){
     //Async 
-     return function(dispatch){
-      const p = getRemoteBugs()
+    /* return function(dispatch){
+      const p = bugApi.getAll()
       p.then(function(bugs){
         const action = { type: 'INIT_BUGS', payload: bugs };
         dispatch(action);
       });
+    } */
+
+    //using async await
+    return async function (dispatch) {
+      const bugs = await bugApi.getAll();
+      const action = { type: 'INIT_BUGS', payload: bugs };
+      dispatch(action);
     }
     
     //Sync
@@ -97,25 +119,78 @@ var bugActions = {
     const action = { type: 'INIT_BUGS', payload: bugs };
     return action;  
     */
+  },
+  addNew(bugName){
+    return async function(dispatch){
+      const newBugData = {
+        id : 0,
+        name : bugName,
+        isClosed : false, 
+        createdAt : new Date()
+      };
+      const newBug = await bugApi.save(newBugData);
+      const action = { type : 'ADD_NEW_BUG', payload : newBug };
+      dispatch(action);
+    }
+  },
+  toggle(bugToToggle){
+    return async function(dispatch){
+      bugToToggle.isClosed = !bugToToggle.isClosed;
+      const toggledBug = await bugApi.save(bugToToggle);
+      const action = { type : 'UPDATE_BUG', payload : toggledBug };
+      dispatch(action);
+    }
+  },
+  remove(bugToRemove){
+    return async function(dispatch){
+      await bugApi.remove(bugToRemove);
+      const action = { type : 'REMOVE_BUG', payload : bugToRemove };
+      dispatch(action);
+    }
   }
 }
 
 const BugTracker = () => {
   const dispatch = useDispatch();
   const bugs = useSelector(state => state.bugsData);
+  const [newBugName, setNewBugName] = React.useState('');
 
   const onLoadClick = () => {
     const loadAction = bugActions.load();
     dispatch(loadAction);
   }
 
-  const bugItems = bugs.map((bug, index) => (
-    <li key={index}>
-      {bug.isClosed ? (<div className="bugname closed">{bug.name}</div>) : (<div className="bugname">{bug.name}</div>) }
-      <div className="datetime">{bug.createdAt}</div>
-      <input type="button" value="Remove" />
-    </li>
-  ));
+  const onAddNewClick = () => {
+    const addNewAction = bugActions.addNew(newBugName);
+    dispatch(addNewAction);
+  }
+
+  const onBugNameClick = (bug) => {
+    const updateBugAction = bugActions.toggle(bug);
+    dispatch(updateBugAction);
+  }
+
+  const onRemoveClick = (bug) => {
+    const removeBugAction = bugActions.remove(bug);
+    dispatch(removeBugAction);
+  }
+
+  const bugItems = bugs.map((bug, index) => {
+    const bugStyle = 'bugname ' + (bug.isClosed ? 'closed' : '')
+
+    return (
+      <li key={index}>
+        <div className={bugStyle} 
+          onClick={() => onBugNameClick(bug)}>
+            {bug.name}
+        </div>
+        <div className="datetime">
+          {bug.createdAt}
+        </div>
+        <input type="button" value="Remove" onClick={() => onRemoveClick(bug)} />
+      </li>
+    )
+  });
 
   return (
     <div>
@@ -129,8 +204,8 @@ const BugTracker = () => {
       </section>
       <section className="edit">
         <label htmlFor="">Bug Name :</label>
-        <input type="text" />
-        <input type="button" value="Add New" id="btnAddNew" />
+        <input type="text" value={newBugName} onChange={ evt => setNewBugName(evt.target.value)}  />
+        <input type="button" value="Add New" onClick={onAddNewClick}/>
       </section>
       <section className="list">
         <ol id="bugList">
