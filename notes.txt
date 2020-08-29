@@ -289,3 +289,6 @@ React-Redux
 
 yarn add redux-logger  redux-thunk
 
+Contact: 
+tkmagesh77@gmail.com
+99019-11221
