@@ -12,7 +12,7 @@ const BugTracker = () => {
     useEffect(() => {
         const loadAction = bugActions.load();
         dispatch(loadAction);
-    }, []);
+    }, [dispatch]);
     
     return (
         <div>

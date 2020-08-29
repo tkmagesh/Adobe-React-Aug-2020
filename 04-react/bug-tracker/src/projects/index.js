@@ -9,7 +9,7 @@ const Projects = () => {
 
     useEffect(() => {
         dispatch(projectActions.load());
-    },[]);
+    },[dispatch]);
 
     const onAddNewClick = () => {
         dispatch(projectActions.addNew(newProjectName));
@@ -18,7 +18,7 @@ const Projects = () => {
         <div>
             <h3>Products</h3>
             <hr/>
-            <label for="">Project Name :</label>
+            <label htmlFor="">Project Name :</label>
             <input type="text" value={newProjectName} onChange={evt => setNewProjectName(evt.target.value)}/>
             <input type="button" value="Add New" onClick={onAddNewClick}/>
             <ol>

@@ -7,15 +7,40 @@ import BugTracker from './bugTracker';
 import Projects from './projects';
 
 import appStore from './store';
+import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom';
 
+const Home = () => (
+  <div>
+    <h3>Introduction</h3>
+    <p>Id et quis enim elit. Officia non laborum amet incididunt Lorem pariatur nulla sint minim mollit id amet. Sint id qui id dolore enim do exercitation eu labore consectetur labore laborum pariatur esse. Minim esse cupidatat ipsum magna excepteur et et Lorem. Nulla id exercitation non fugiat ut do fugiat adipisicing.</p>
+    <p>Quis id deserunt excepteur ipsum ullamco tempor. Id cillum ad eiusmod commodo ad dolor ad irure tempor ea. Velit consequat ex nisi eiusmod officia aliqua dolor ut incididunt minim culpa. Aliqua qui est proident ex ex do ullamco commodo. In consectetur aute ea nisi ut irure duis in quis sunt. Dolor dolor adipisicing non adipisicing. Aliquip enim quis magna ullamco officia laboris consectetur non ad do irure.</p>
+    <p>Labore culpa aliqua mollit non mollit pariatur. Occaecat sint tempor amet minim excepteur occaecat ea officia aliquip eu aliqua qui consectetur ex. Laboris enim est voluptate sunt qui qui ipsum nostrud.</p>
+  </div>
+)
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={appStore}>
-      <h1>Bug Tracker</h1>
-      <hr/>
-      <Projects/>
-      <BugTracker></BugTracker>
+      <Router>
+        <h1>Bug Tracker</h1>
+        <hr/>
+        <div>
+          <span> [ <Link to="/">Home</Link> ] </span>
+          <span> [ <Link to="/projects">Projects</Link> ] </span>
+          <span> [ <Link to="/bugs">Bugs</Link> ] </span>
+        </div>
+        <Switch>
+          <Route path="/projects">
+            <Projects/>
+          </Route>
+          <Route path="/bugs">
+            <BugTracker/>
+          </Route>
+          <Route path="/">
+            <Home/>
+          </Route>
+        </Switch>
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
