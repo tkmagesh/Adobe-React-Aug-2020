@@ -1,16 +1,22 @@
 {
   "bugs": [
     {
-      "id": 2,
-      "name": "User actions not recognised",
-      "isClosed": true,
-      "createdAt": "2020-07-15T09:41:34.958Z"
-    },
-    {
       "id": 4,
       "name": "Application is not responding",
       "isClosed": false,
       "createdAt": "2020-08-29T06:15:01.943Z"
+    },
+    {
+      "id": 6,
+      "name": "Data integrity checks failed",
+      "isClosed": true,
+      "createdAt": "2020-08-29T09:03:41.386Z"
+    },
+    {
+      "id": 7,
+      "name": "Server communication failure",
+      "isClosed": false,
+      "createdAt": "2020-08-29T09:06:15.127Z"
     }
   ],
   "projects": [
