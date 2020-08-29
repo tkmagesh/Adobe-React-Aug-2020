@@ -7,7 +7,7 @@ import BugList from './components/BugList';
 
 const BugTracker = () => {
     const dispatch = useDispatch();
-    const bugs = useSelector(state => state.bugsData);
+    const bugs = useSelector(state => state.bugsData.bugs);
     
     useEffect(() => {
         const loadAction = bugActions.load();

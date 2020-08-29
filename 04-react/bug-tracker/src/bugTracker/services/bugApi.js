@@ -7,6 +7,10 @@ const bugApi = {
         return axios.get(serviceEndPoint)
             .then(response => response.data);
     },
+    getById(id) {
+        return axios.get(`${serviceEndPoint}/${id}`)
+            .then(response => response.data);
+    },
     save(bugData) {
         if (bugData.id === 0) {
             return axios.post(serviceEndPoint, bugData)
