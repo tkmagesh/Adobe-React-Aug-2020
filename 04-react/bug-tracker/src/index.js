@@ -4,7 +4,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import {useSelector, useDispatch, Provider} from 'react-redux';
 import { createStore, combineReducers } from 'redux';
-
+import axios from 'axios';
 
 
 function bugsReducer(currentState = [], action){
@@ -31,18 +31,29 @@ function getLocalBugs() {
   return bugs;
 }
 
-/* 
+
 function getRemoteBugs() {
   return axios.get('http://localhost:3030/bugs')
     .then(response => response.data);
 } 
-*/
+
 
 var bugActions = {
   load(){
+    return function(dispatch){
+      const p = getRemoteBugs()
+      p.then(function(bugs){
+        const action = { type: 'INIT_BUGS', payload: bugs };
+        dispatch(action);
+      });
+    }
+    
+    /* 
     const bugs = getLocalBugs();
-    const action = { type : 'INIT_BUGS', payload: bugs };
-    return action;
+    const action = { type: 'INIT_BUGS', payload: bugs };
+    return action; 
+    */
+    
   }
 }
 
@@ -52,7 +63,8 @@ const BugTracker = () => {
 
   const onLoadClick = () => {
     const loadAction = bugActions.load();
-    dispatch(loadAction);
+    //dispatch(loadAction);
+    loadAction(dispatch);
   }
 
   const bugItems = bugs.map((bug, index) => (
