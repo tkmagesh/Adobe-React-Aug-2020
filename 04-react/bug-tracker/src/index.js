@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import {useSelector, useDispatch, Provider} from 'react-redux';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 import axios from 'axios';
 
 
@@ -20,7 +22,47 @@ const rootReducer = combineReducers({
   bugsData : bugsReducer
 });
 
-const appStore = createStore(rootReducer);
+/* function loggerMiddlewere(store){
+  return function (next){
+    return function (action){
+      console.group(action.type);
+      console.group('BEFORE');
+      console.log(store.getState());
+      console.groupEnd();
+      console.log(action);
+      next(action);
+      console.group('AFTER');
+      console.log(store.getState());
+      console.groupEnd();
+      console.groupEnd();
+    }
+  }
+} */
+
+/* function asyncMiddleware(store){
+  return function (next){
+    return function (action){
+      if (typeof action === 'function'){
+        action(store.dispatch);
+      } else {
+        return next(action);
+      }
+    }
+  }
+} */
+
+/* const asyncMiddleware = ({dispatch, getState}) => next => action => {
+  if (typeof action === 'function') {
+    action(dispatch, getState);
+  } else {
+    return next(action);
+  }
+} */
+
+
+//const appStore = createStore(rootReducer, applyMiddleware(loggerMiddlewere, asyncMiddleware));
+
+const appStore = createStore(rootReducer, applyMiddleware(logger, thunk));
 
 function getLocalBugs() {
   const bugs = [
@@ -40,7 +82,8 @@ function getRemoteBugs() {
 
 var bugActions = {
   load(){
-    return function(dispatch){
+    //Async 
+     return function(dispatch){
       const p = getRemoteBugs()
       p.then(function(bugs){
         const action = { type: 'INIT_BUGS', payload: bugs };
@@ -48,12 +91,12 @@ var bugActions = {
       });
     }
     
+    //Sync
     /* 
     const bugs = getLocalBugs();
     const action = { type: 'INIT_BUGS', payload: bugs };
-    return action; 
+    return action;  
     */
-    
   }
 }
 
@@ -63,8 +106,7 @@ const BugTracker = () => {
 
   const onLoadClick = () => {
     const loadAction = bugActions.load();
-    //dispatch(loadAction);
-    loadAction(dispatch);
+    dispatch(loadAction);
   }
 
   const bugItems = bugs.map((bug, index) => (
